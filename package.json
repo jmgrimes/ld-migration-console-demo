@@ -1,0 +1,38 @@
+{
+    "name": "ld-migration-console-demo",
+    "description": "A simple targeting-focused demonstration of two, four, and six stage migration flows with LaunchDarkly.",
+    "version": "1.0.0",
+    "type": "module",
+    "source": "src/index.ts",
+    "main": "dist/index.js",
+    "author": "jgrimes@launchdarkly.com",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "clean": "rimraf dist",
+        "format": "prettier --write ./",
+        "lint": "eslint",
+        "rebuild": "yarn clean && yarn build",
+        "start": "node --no-warnings dist/index.js"
+    },
+    "devDependencies": {
+        "@types/node": "^20.5.6",
+        "@types/uuid": "^9.0.2",
+        "@typescript-eslint/eslint-plugin": "^6.4.1",
+        "@typescript-eslint/parser": "^6.4.1",
+        "eslint": "^8.47.0",
+        "eslint-config-prettier": "^9.0.0",
+        "prettier": "^3.0.2",
+        "rimraf": "^5.0.1",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "dotenv": "^16.3.1",
+        "launchdarkly-node-server-sdk": "^7.0.3",
+        "uuid": "^9.0.0"
+    },
+    "engines": {
+        "node": ">=16"
+    }
+}
