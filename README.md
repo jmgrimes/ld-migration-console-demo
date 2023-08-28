@@ -43,7 +43,7 @@ The demo requires access to a LaunchDarkly project with at least one environment
 Once you have this project, environment, and flag created, configure the demo with the SDK Key.  Copy the 
 ```.env.sample``` file to ```.env``` and add the value of the SDK Key to the LAUNCHDARKLY_SDK_KEY environment variable.
 
-Install the dependencies for the demo by running ```yarn install`` in the root directory, and then build the demo by 
+Install the dependencies for the demo by running ```yarn install``` in the root directory, and then build the demo by 
 running ```yarn build```.  This will create an executable distribution in the ```dist``` directory.  You can run this 
 demo by running ```yarn start``` or changing your working directory to ```dist``` and running ```node index.js```.
 
