@@ -4,11 +4,11 @@ import fs from "node:fs"
 import { Evaluatable, Evaluation } from "./evaluation.js"
 
 function RenderReadString(enabled: boolean, authoritative: boolean) {
-    return enabled ? chalk.green(authoritative ? chalk.bold.underline("R") : "r") : chalk.gray("r")
+    return enabled ? chalk.greenBright(authoritative ? chalk.bold.underline("R") : "r") : chalk.gray("r")
 }
 
 function RenderWriteString(enabled: boolean, authoritative: boolean) {
-    return enabled ? chalk.green(authoritative ? chalk.bold.underline("W") : "w") : chalk.gray("w")
+    return enabled ? chalk.greenBright(authoritative ? chalk.bold.underline("W") : "w") : chalk.gray("w")
 }
 
 function RenderEvaluation(evaluation: Evaluation) {
@@ -29,48 +29,45 @@ export default async function Render(evaluateables: Evaluatable[]) {
     fs.writeSync(1, "\x1B[2J\x1B[H")
     fs.writeSync(
         1,
-        "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐\n",
+        "┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐\n",
     )
     fs.writeSync(
         1,
-        `│                                              ${chalk.bold.underline(
+        `│                                                   ${chalk.bold.underline(
             "MIGRATION PROGRESSION",
-        )}                                              │\n`,
+        )}                                                  │\n`,
     )
     fs.writeSync(
         1,
-        "│                                                                                                                 │\n",
+        "│                                                                                                                          │\n",
     )
     fs.writeSync(
         1,
-        `│                       ${chalk.gray("Function Disabled")}         ${chalk.green(
+        `│                          ${chalk.gray("Function Disabled")}          ${chalk.greenBright(
             "Function Enabled",
-        )}         ${chalk.bold.underline("AUTHORITATIVE SOURCE")}                   │\n`,
+        )}          ${chalk.bold.underline("AUTHORITATIVE SOURCE")}                       │\n`,
     )
     fs.writeSync(
         1,
-        "┝━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥\n",
+        "┝━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥\n",
     )
     fs.writeSync(
         1,
-        "│                                                                                                                 │\n",
+        "│                                                                                                                          │\n",
     )
     evaluations.forEach((evaluation, index) => {
         if (index % 10 == 0) {
             fs.writeSync(1, "│  ")
         }
-        fs.writeSync(1, RenderEvaluation(evaluation) + " ")
+        fs.writeSync(1, RenderEvaluation(evaluation) + "  ")
         if (index % 10 == 9) {
-            fs.writeSync(1, " │\n")
+            fs.writeSync(1, "│\n")
+            fs.writeSync(1, "│                                                                                                                          │\n")
         }
     })
     fs.writeSync(
         1,
-        "│                                                                                                                 │\n",
-    )
-    fs.writeSync(
-        1,
-        "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n",
+        "└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n",
     )
     fs.writeSync(1, "\n")
     fs.fsyncSync(1)
